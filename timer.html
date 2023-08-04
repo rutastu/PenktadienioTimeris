@@ -66,7 +66,10 @@
 
       function start() {
         if (!timerRunning) {
-          if (isNaN(parseInt(document.getElementById("inputTime").value))) {
+          if (
+            isNaN(parseInt(document.getElementById("inputTime").value)) ||
+            parseInt(document.getElementById("inputTime").value) <= 0
+          ) {
             alert("Please enter a number.");
             return;
           }
