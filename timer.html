@@ -51,11 +51,7 @@
     <div class="main">
       <h1>Countdown Timer</h1>
       <div>
-        <input
-          type="number"
-          placeholder="Enter time in minutes"
-          id="inputTime"
-        />
+        <input type="text" placeholder="Enter time in minutes" id="inputTime" />
       </div>
       <div class="countdown"></div>
       <div class="buttons">
@@ -71,6 +67,10 @@
 
       function start() {
         if (!timerRunning) {
+          if (isNaN(parseInt(document.getElementById("inputTime").value))) {
+            alert("Please enter a number.");
+            return;
+          }
           time = document.getElementById("inputTime").value * 60;
           timerRunning = true;
           interval = setInterval(() => {
