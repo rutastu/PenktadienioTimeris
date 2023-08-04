@@ -31,8 +31,13 @@
         border-radius: 5%;
       }
       .countdown {
-        width: 100px;
+        width: 360px;
         height: 200px;
+        padding-top: 40px;
+        font-size: 30pt;
+        font-weight: 600;
+        color: black;
+        text-align: center;
       }
       .buttons {
         display: flex;
@@ -46,14 +51,42 @@
     <div class="main">
       <h1>Countdown Timer</h1>
       <div>
-        <input type="number" />
+        <input
+          type="number"
+          placeholder="Enter time in minutes"
+          id="inputTime"
+        />
       </div>
       <div class="countdown"></div>
       <div class="buttons">
-        <button>Start</button>
+        <button onclick="start()">Start</button>
         <button>Stop</button>
         <button>Reset</button>
       </div>
     </div>
+    <script>
+      let timerRunning = false;
+      let time = 0;
+      let interval;
+
+      function start() {
+        if (!timerRunning) {
+          time = document.getElementById("inputTime").value * 60;
+          timerRunning = true;
+          interval = setInterval(() => {
+            let minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+            document.querySelector(
+              ".countdown"
+            ).innerHTML = `${minutes} min ${seconds} sec`;
+            time--;
+            if (time < 0) {
+              clearInterval(interval);
+              timerRunning = false;
+            }
+          }, 1000);
+        }
+      }
+    </script>
   </body>
 </html>
